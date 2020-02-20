@@ -1,5 +1,5 @@
 const main = document.getElementById('summary');
-console.log(main);
+console.log('word');
 
 const tameImpala = {
     artist: 'Tame Impala',
@@ -12,21 +12,21 @@ const dominicFike = {
     artist: 'Dominic Fike',
     album: 'Don\'t Forget About Me, Demons',
     releaseDate: 'October 16, 2018',
-    image: '../assets/courtney-barnett.jpg'
+    image: '../assets/dominic-fike.jpg'
 };
 
 const theShins = {
     artist: 'The Shins',
     album: 'Oh, Inverted World',
     releaseDate: 'February 19, 2001',
-    image: 'https://i.imgur.com/6l0gdp6.jpg'
+    image: '../assets/the-shins.jpg'
 };
 
 const courtneyBarnett = {
     artist: 'Courtney Barnett',
     album: 'Sometimes I Sit and Think, and Sometimes I Just Sit',
     releaseDate: 'March 20, 2015',
-    image: 'https://i.imgur.com/XYwFujW.jpg'
+    image: '../assets/courtney-barnett.jpg'
 };
 
 const songs = [
@@ -76,22 +76,63 @@ cards[2].style.left = '73%';
 cards[3].style.display = 'none';
 
 const right = document.getElementById('right');
+const left = document.getElementById('left');
 
 right.addEventListener('click', function() {
     for(let i = 0; i < cards.length; i++) {
+
+        cards[i].style.transitionDuration = '1s';
+        
         let styleLeft = parseInt(cards[i].style.left);
         styleLeft += 35;
         cards[i].style.left = styleLeft + '%';
-      
+        
         if(cards[i].style.display === 'none') {
-            cards[i].style.display = 'initial';
-            cards[i].style.left = '3%';
+            cards[i].style.display = 'flex';
+            cards[i].style.left = '-225px';
+            setTimeout(function() {
+                cards[i].style.left = '3%';
+            }, 0);
+        }
+
+        
+        if(cards[i].style.left === '108%') {
+            cards[i].style.transitionDuration = '1s';
+            cards[i].style.display = 'none';
         }
     }
-    for(let i = 0; i < cards.lenth; i++) {
-        if(cards[i].style.left === '108%') {
-            console.log(cards[i].style.left);
+});
 
+left.addEventListener('click', function() {
+    for(let i = 0; i < cards.length; i++) {
+
+        cards[i].style.transitionDuration = '1s';
+        
+        let styleLeft = parseInt(cards[i].style.left);
+        styleLeft -= 35;
+        cards[i].style.left = styleLeft + '%';
+        
+    }
+    for(let i = 0; i < cards.length; i++) {
+        if(cards[i].style.display === 'none') {
+            cards[i].style.left = '108%';
+            // eslint-disable-next-line no-inner-declarations
+            function slideInFromRight() {
+                setTimeout(function() {
+                    let left = parseInt(cards[i].style.left);
+                    if(left >= 80) {
+                        left -= 7;
+                        cards[i].style.left = left + '%';
+                        slideInFromRight();
+                    }
+                }, 5);
+            }
+            slideInFromRight();
+
+            cards[i].style.display = 'flex';
+        }     
+        if(cards[i].style.left === '-32%') {
+            cards[i].style.display = 'none';
         }
     }
 });
