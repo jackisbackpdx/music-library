@@ -1,0 +1,54 @@
+img {
+    height: 200px;
+    width: 200px;
+  }
+  
+  main {
+    display: flex;
+  }
+  
+  div {
+    display: flex;
+    width: 600px;
+  }
+  
+  aside {
+    margin-left: 3px;
+  }
+  
+  .release-date {
+    position: absolute;
+    top: 150px;
+    color: red;
+  }
+  
+  .place-card {
+    border: 2px solid black;
+    border-radius: 3px;
+    position: absolute;
+    width: 400px;
+  }
+  
+  .arrow {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    top: 75px;
+  }
+  
+  #left {
+    left: 0;
+    transform: rotate(180deg);
+  }
+  
+  #left:hover {
+    transform: scale(1.1, 1.1) rotate(180deg);
+  }
+  
+  #right {
+    right: 20px;
+  }
+  
+  .arrow:hover {
+    transform: scale(1.1, 1.1);
+  }
