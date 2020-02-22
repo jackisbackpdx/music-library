@@ -1,5 +1,4 @@
 const main = document.getElementById('summary');
-console.log('word');
 
 const tameImpala = {
     artist: 'Tame Impala',
@@ -38,7 +37,7 @@ const songs = [
 
 let cards = [];
 
-for(let i = 0; i < songs.length; i++) {
+for (let i = 0; i < songs.length; i++) {
     let song = songs[i];
     
     const placeCard = document.createElement('div');
@@ -79,48 +78,74 @@ const right = document.getElementById('right');
 const left = document.getElementById('left');
 
 right.addEventListener('click', function() {
-    for(let i = 0; i < cards.length; i++) {
+    for (let i = 0; i < cards.length; i++) {
 
-        cards[i].style.transitionDuration = '1s';
+        let card = cards[i];
+
+        card.style.transitionDuration = '.8s';
+        card.style.animationTimingFunction = 'linear';
         
-        let styleLeft = parseInt(cards[i].style.left);
-        styleLeft += 35;
-        cards[i].style.left = styleLeft + '%';
+        let styleLeft = parseInt(card.style.left);
+
         
-        if(cards[i].style.display === 'none') {
-            cards[i].style.display = 'flex';
-            cards[i].style.left = '-225px';
-            setTimeout(function() {
-                cards[i].style.left = '3%';
-            }, 0);
+        if (parseInt(card.style.left) === 73) {
+            // eslint-disable-next-line no-inner-declarations
+            function slideOutRight() {
+                let left = parseInt(card.style.left);
+                if (left < 108) {
+                    left += 5;
+                    card.style.left = left + '%';
+                    requestAnimationFrame(slideOutRight);
+                }
+                if (left === 108) {
+                    card.style.display = 'none';
+                }
+            }
+            slideOutRight();     
+        }   
+
+        if (styleLeft !== 73) {
+            styleLeft += 35;
         }
-
+        card.style.left = styleLeft + '%';
         
-        if(cards[i].style.left === '108%') {
-            cards[i].style.transitionDuration = '1s';
-            cards[i].style.display = 'none';
+        if (card.style.display === 'none') {
+            card.style.animationDuration = '0s';
+            card.style.display = 'flex';
+            card.style.left = '-32%';
+            
+            // eslint-disable-next-line no-inner-declarations
+            function slideInRight() {
+                let left = parseInt(card.style.left);
+                if (left <= -4) {
+                    left += 7;
+                    card.style.left = left + '%';
+                    requestAnimationFrame(slideInRight);
+                }
+            }
+            slideInRight();
         }
     }
 });
 
 left.addEventListener('click', function() {
-    for(let i = 0; i < cards.length; i++) {
+    for (let i = 0; i < cards.length; i++) {
 
-        cards[i].style.transitionDuration = '1s';
+        cards[i].style.transitionDuration = '.8s';
         
         let styleLeft = parseInt(cards[i].style.left);
         styleLeft -= 35;
         cards[i].style.left = styleLeft + '%';
         
     }
-    for(let i = 0; i < cards.length; i++) {
-        if(cards[i].style.display === 'none') {
+    for (let i = 0; i < cards.length; i++) {
+        if (cards[i].style.display === 'none') {
             cards[i].style.left = '108%';
             // eslint-disable-next-line no-inner-declarations
             function slideInFromRight() {
                 setTimeout(function() {
                     let left = parseInt(cards[i].style.left);
-                    if(left >= 80) {
+                    if (left >= 79) {
                         left -= 7;
                         cards[i].style.left = left + '%';
                         slideInFromRight();
@@ -128,10 +153,11 @@ left.addEventListener('click', function() {
                 }, 5);
             }
             slideInFromRight();
+            // eslint-disable-next-line no-inner-declarations
 
             cards[i].style.display = 'flex';
         }     
-        if(cards[i].style.left === '-32%') {
+        if (cards[i].style.left === '-32%') {
             cards[i].style.display = 'none';
         }
     }

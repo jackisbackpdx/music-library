@@ -1,7 +1,10 @@
 html {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+}
+
+#container {
+  margin-top: 200px;
 }
 
 body {
@@ -43,6 +46,7 @@ aside {
   width: 25%;
   height: 250px;
   z-index: 0;
+  margin-top: 5px;
   background-color: white;
 }
   
@@ -93,7 +97,7 @@ p {
 
 #left-hide {
   width: 20%;
-  height: 335px;
+  height: 345px;
   left: -10px;
   background-color: black;
   z-index: 1;
@@ -101,9 +105,18 @@ p {
 }
 #right-hide {
   width: 20%;
-  height: 335px;
-  right: -10px;
+  height: 345px;
+  right: -20px;
   background-color: black;
   z-index: 1;
+  position: absolute;
+}
+#top {
+  height: 80px;
+  width: 103vw;
+  background-color: black;
+  z-index: 0;
+  margin-top: -80px;
+  left: -10px;
   position: absolute;
 }
